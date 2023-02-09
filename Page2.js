@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const Flex = ({ navigation, route }) => {
     return (
@@ -13,11 +13,29 @@ const Flex = ({ navigation, route }) => {
             ]}>
             <View style={{ flex: 1, backgroundColor: 'red' }} />
             <View style={{ flex: 2, backgroundColor: 'darkorange' }} />
-            <View style={{ flex: 3, backgroundColor: '#669900', alignItems:'center' }} >
+            <View style={{ flex: 3, backgroundColor: 'green' }} >
 
-                <Text style={{fontSize:50, color:'white', fontWeight:'bold'}}>Du lieu tu Page1:</Text>
-                <Text style={{fontSize:30}}>{route.params.itemId}</Text>
-                <Text style={{fontSize:30}}>{route.params.name}</Text>
+                <Text>Du lieu tu Page1: {route.params.itemId} - {route.params.name}
+                </Text>
+
+                <TouchableOpacity onPress={() => {
+                    //navigation.pop(1);
+
+                    route.params.onGoBack({ name: 'CP17306', passMon: true });
+                    navigation.goBack();
+                }}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Quay lai</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('Page4', {data: 'CP17306'});
+                }}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Go to Page3</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -28,7 +46,17 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
     },
+
+    button: {
+        backgroundColor: 'black',
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        marginTop: 15,
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
 });
 
 export default Flex;
-// thu nghiem

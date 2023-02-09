@@ -12,6 +12,9 @@ export default class Page1 extends React.Component {
     LayoutAnimation.easeInEaseOut();
     this.setState({w: this.state.w + 15, h: this.state.h + 15});
   };
+  refresh = (data) => {
+    console.log(data)
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -26,6 +29,9 @@ export default class Page1 extends React.Component {
             this.props.navigation.navigate('Page2', {
               itemId: '07-02-2023',
               name: 'hanhtcph21483-CP17306-Lab5',
+              onGoBack:(data) =>{
+                console.log(data.name + "qua mon" +data.passMon)
+              }
             }); }}>
          <View style={styles.button}>
             <Text style={styles.buttonText}>Chuyen Page2</Text>
